@@ -3,6 +3,8 @@
 
 package validator
 
+import "regexp"
+
 // https://github.com/VincentSit/ChinaMobilePhoneNumberRegex/blob/master/README-CN.md
 const basicRegexp string = "^(?:\\+?86)?1(?:3\\d{3}|5[^4\\D]\\d{2}|8\\d{3}|7(?:[235-8]\\d{2}|4(?:0\\d|1[0-2]|9\\d))|9[0-35-9]\\d{2}|66\\d{2})\\d{6}$"
 const virtualRegexp string = "^(?:\\+?86)?1(?:7[01]|6[257])\\d{8}$"
@@ -46,7 +48,7 @@ func IsValidPhone(value string, allowBlank bool, types []PhoneType) bool {
 	}
 
 	if len(types) == 0 {
-		types = [3]PhoneType{Basic, Virtual, NetOnly}
+		types = []PhoneType{Basic, Virtual, NetOnly}
 	}
 
 	for _, phoneType := range types {

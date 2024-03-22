@@ -3,6 +3,8 @@
 
 package validator
 
+import "regexp"
+
 const identifierRegexp string = "^[a-zA-Z][a-zA-Z0-9]*$"
 
 // IsValidIdentifier 字母数字标识符
