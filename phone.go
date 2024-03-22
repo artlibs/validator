@@ -23,6 +23,8 @@ const (
 	NetOnly
 	// IotOnly 13位物联网数据卡,支持数据流量
 	IotOnly
+	// AllType 包含以上4种
+	AllType
 )
 
 func getRegexp(phoneType PhoneType) *regexp.Regexp {
@@ -54,6 +56,9 @@ func IsValidPhone(value string, allowBlank bool, types []PhoneType) bool {
 	for _, phoneType := range types {
 		if getRegexp(phoneType).MatchString(value) {
 			return true
+		}
+		if phoneType == AllType {
+			break
 		}
 	}
 
