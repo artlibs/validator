@@ -8,11 +8,12 @@ import "regexp"
 var moneyRegexp = regexp.MustCompile("^([0-9]+|[0-9]{1,3}(,[0-9]{3})*)(.[0-9]{1,2})?$")
 
 // IsValidMoney 金钱
+// allowEmpty: return true if id is nil or ""
 // Validate is the money a valid money
-func IsValidMoney(money string, allowBlank bool) bool {
-	if value, ok := testBlank(money); ok {
+func IsValidMoney(money string, allowEmpty bool) bool {
+	if value, ok := testNotBlank(money); ok {
 		return moneyRegexp.MatchString(value)
 	}
 
-	return allowBlank
+	return allowEmpty && isEmpty(money)
 }

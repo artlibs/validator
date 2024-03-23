@@ -28,15 +28,16 @@ var id18Regexp = regexp.MustCompile(
 		"$")
 
 // IsValidIdCard 身份证
+// allowEmpty: return true if idCardNo is nil or ""
 // Validate is the idCardNo a valid id card number
-func IsValidIdCard(idCardNo string, allowBlank bool) bool {
+func IsValidIdCard(idCardNo string, allowEmpty bool) bool {
 	defer func() {
 		if r := recover(); r != nil {
 			fmt.Println("panic:", r)
 		}
 	}()
 
-	if value, ok := testBlank(idCardNo); ok {
+	if value, ok := testNotBlank(idCardNo); ok {
 		if len(value) == 15 {
 			return verify(upgrade(value))
 		}
@@ -44,7 +45,7 @@ func IsValidIdCard(idCardNo string, allowBlank bool) bool {
 		return verify(value)
 	}
 
-	return allowBlank
+	return allowEmpty && isEmpty(idCardNo)
 }
 
 func verify(value string) bool {

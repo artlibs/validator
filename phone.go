@@ -43,9 +43,10 @@ func getPhoneRegexp(phoneType PhoneType) *regexp.Regexp {
 }
 
 // IsValidPhone 手机号码
+// allowEmpty: return true if phone is nil or ""
 // Validate is the phone a valid phone number
-func IsValidPhone(phone string, allowBlank bool, types []PhoneType) bool {
-	if value, ok := testBlank(phone); ok {
+func IsValidPhone(phone string, allowEmpty bool, types []PhoneType) bool {
+	if value, ok := testNotBlank(phone); ok {
 		if len(types) == 0 {
 			types = []PhoneType{Basic, Virtual, NetOnly}
 		}
@@ -62,5 +63,5 @@ func IsValidPhone(phone string, allowBlank bool, types []PhoneType) bool {
 		return false
 	}
 
-	return allowBlank
+	return allowEmpty && isEmpty(phone)
 }

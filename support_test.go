@@ -8,13 +8,13 @@ import (
 	"testing"
 )
 
-func TestTestBlank(t *testing.T) {
+func TestTestNotBlank(t *testing.T) {
 	allBlanks := []string{
 		"\t", "     ", "\n \r",
 	}
 	for _, value := range allBlanks {
-		tv, ok := testBlank(value)
-		assert.True(t, ok)
+		tv, ok := testNotBlank(value)
+		assert.False(t, ok)
 		assert.Equal(t, 0, len(tv))
 	}
 
@@ -25,8 +25,12 @@ func TestTestBlank(t *testing.T) {
 		"  blank   ": 5,
 	}
 	for k, n := range nonBlanks {
-		nk, ok := testBlank(k)
-		assert.False(t, ok)
+		nk, ok := testNotBlank(k)
+		assert.True(t, ok)
 		assert.Equal(t, n, len(nk))
 	}
+}
+
+func TestIsEmpty(t *testing.T) {
+	assert.True(t, isEmpty(""))
 }

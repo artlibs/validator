@@ -8,9 +8,10 @@ import "regexp"
 var numberOnlyRegexp = regexp.MustCompile("\\d+")
 
 // IsValidBankCard 银行卡号
+// allowEmpty: return true if bankCardNo is nil or ""
 // Validate is the bankCardNo a valid bank card number
-func IsValidBankCard(bankCardNo string, allowBlank bool) bool {
-	if value, ok := testBlank(bankCardNo); ok {
+func IsValidBankCard(bankCardNo string, allowEmpty bool) bool {
+	if value, ok := testNotBlank(bankCardNo); ok {
 		size := len(value)
 		if size < 15 || size > 19 {
 			return false
@@ -22,7 +23,7 @@ func IsValidBankCard(bankCardNo string, allowBlank bool) bool {
 		return check != 'N' && check == last
 	}
 
-	return allowBlank
+	return allowEmpty && isEmpty(bankCardNo)
 }
 
 func bkCvc(value string) rune {

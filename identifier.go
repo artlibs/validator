@@ -5,14 +5,15 @@ package validator
 
 import "regexp"
 
-var identifierRegexp = regexp.MustCompile("^[a-zA-Z][a-zA-Z0-9]*$")
+var identifierRegexp = regexp.MustCompile("^[_a-zA-Z][_a-zA-Z0-9]*$")
 
-// IsValidIdentifier 字母数字标识符
-// Validate is the id a valid alpha number identifier
-func IsValidIdentifier(id string, allowBlank bool) bool {
-	if value, ok := testBlank(id); ok {
+// IsValidIdentifier 字母数字下划线标识符
+// allowEmpty: return true if id is nil or ""
+// Validate is the id a valid alpha number (with _) identifier
+func IsValidIdentifier(id string, allowEmpty bool) bool {
+	if value, ok := testNotBlank(id); ok {
 		return identifierRegexp.MatchString(value)
 	}
 
-	return allowBlank
+	return allowEmpty && isEmpty(id)
 }
