@@ -28,7 +28,7 @@ var id18Regexp = regexp.MustCompile(
 		"$")
 
 // IsValidIdCard 身份证
-// Validate is the value a valid id card number
+// Validate is the idCardNo a valid id card number
 func IsValidIdCard(idCardNo string, allowBlank bool) bool {
 	defer func() {
 		if r := recover(); r != nil {

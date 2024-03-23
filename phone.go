@@ -43,7 +43,7 @@ func getPhoneRegexp(phoneType PhoneType) *regexp.Regexp {
 }
 
 // IsValidPhone 手机号码
-// Validate is the value a valid phone number
+// Validate is the phone a valid phone number
 func IsValidPhone(phone string, allowBlank bool, types []PhoneType) bool {
 	if value, ok := testBlank(phone); ok {
 		if len(types) == 0 {

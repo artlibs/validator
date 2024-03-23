@@ -9,10 +9,10 @@ import (
 )
 
 func TestTestBlank(t *testing.T) {
-	blanks := []string{
+	allBlanks := []string{
 		"\t", "     ", "\n \r",
 	}
-	for _, value := range blanks {
+	for _, value := range allBlanks {
 		tv, ok := testBlank(value)
 		assert.True(t, ok)
 		assert.Equal(t, 0, len(tv))

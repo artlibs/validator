@@ -8,7 +8,7 @@ import "regexp"
 var emailRegexp = regexp.MustCompile("\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b")
 
 // IsValidEmail 电子邮件
-// Validate is the value a valid email
+// Validate is the email a valid email address
 func IsValidEmail(email string, allowBlank bool) bool {
 	if value, ok := testBlank(email); ok {
 		return emailRegexp.MatchString(value)

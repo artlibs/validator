@@ -8,7 +8,7 @@ import "regexp"
 var numberOnlyRegexp = regexp.MustCompile("\\d+")
 
 // IsValidBankCard 银行卡号
-// Validate is the value a valid bank card number
+// Validate is the bankCardNo a valid bank card number
 func IsValidBankCard(bankCardNo string, allowBlank bool) bool {
 	if value, ok := testBlank(bankCardNo); ok {
 		size := len(value)

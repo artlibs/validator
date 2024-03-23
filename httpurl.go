@@ -9,7 +9,7 @@ import "regexp"
 var httpUrlRegexp = regexp.MustCompile("(?i)^https?://(?:www\\.)?[\\w.-]+\\.[a-zA-Z]{2,}(?:/\\S*)?$")
 
 // IsValidHttpURL HTTP(S) URL
-// Validate is the value a valid phone number
+// Validate is the url a valid http url
 func IsValidHttpURL(url string, allowBlank bool) bool {
 	if value, ok := testBlank(url); ok {
 		return httpUrlRegexp.MatchString(value)
