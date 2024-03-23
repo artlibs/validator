@@ -27,7 +27,7 @@ const (
 	AllType
 )
 
-func getRegexp(phoneType PhoneType) *regexp.Regexp {
+func getPhoneRegexp(phoneType PhoneType) *regexp.Regexp {
 	switch phoneType {
 	case Basic:
 		return basicRegexp
@@ -44,23 +44,23 @@ func getRegexp(phoneType PhoneType) *regexp.Regexp {
 
 // IsValidPhone 手机号码
 // Validate is the value a valid phone number
-func IsValidPhone(value string, allowBlank bool, types []PhoneType) bool {
-	if isBlank(value) {
-		return allowBlank
-	}
-
-	if len(types) == 0 {
-		types = []PhoneType{Basic, Virtual, NetOnly}
-	}
-
-	for _, phoneType := range types {
-		if getRegexp(phoneType).MatchString(value) {
-			return true
+func IsValidPhone(phone string, allowBlank bool, types []PhoneType) bool {
+	if value, ok := testBlank(phone); ok {
+		if len(types) == 0 {
+			types = []PhoneType{Basic, Virtual, NetOnly}
 		}
-		if phoneType == AllType {
-			break
+
+		for _, phoneType := range types {
+			if getPhoneRegexp(phoneType).MatchString(value) {
+				return true
+			}
+			if phoneType == AllType {
+				break
+			}
 		}
+
+		return false
 	}
 
-	return false
+	return allowBlank
 }

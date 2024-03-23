@@ -10,10 +10,10 @@ var httpUrlRegexp = regexp.MustCompile("(?i)^https?://(?:www\\.)?[\\w.-]+\\.[a-z
 
 // IsValidHttpURL HTTP(S) URL
 // Validate is the value a valid phone number
-func IsValidHttpURL(value string, allowBlank bool) bool {
-	if isBlank(value) {
-		return allowBlank
+func IsValidHttpURL(url string, allowBlank bool) bool {
+	if value, ok := testBlank(url); ok {
+		return httpUrlRegexp.MatchString(value)
 	}
 
-	return httpUrlRegexp.MatchString(value)
+	return allowBlank
 }

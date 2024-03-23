@@ -9,10 +9,10 @@ var emailRegexp = regexp.MustCompile("\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z
 
 // IsValidEmail 电子邮件
 // Validate is the value a valid email
-func IsValidEmail(value string, allowBlank bool) bool {
-	if isBlank(value) {
-		return allowBlank
+func IsValidEmail(email string, allowBlank bool) bool {
+	if value, ok := testBlank(email); ok {
+		return emailRegexp.MatchString(value)
 	}
 
-	return emailRegexp.MatchString(value)
+	return allowBlank
 }

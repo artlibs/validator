@@ -6,6 +6,7 @@ package validator
 import "strings"
 
 // check if the input string is blank
-func isBlank(value string) bool {
-	return len(strings.TrimSpace(value)) == 0
+func testBlank(value string) (string, bool) {
+	newVal := strings.TrimSpace(value)
+	return newVal, len(newVal) == 0
 }
