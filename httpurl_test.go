@@ -1,4 +1,4 @@
-// @Since 2024-03-21.
+// @Since 2024-03-23.
 // @Author Fury, All rights Reserved.
 
 package validator
@@ -27,7 +27,8 @@ func TestIsValidHttpURL(t *testing.T) {
 		"https://example.org/~sub/?k=v1&k=v2",
 		"https://example.org/#/?k=v1&k=v2  ",
 		"\t https://example.org  ",
-		"http://10.34.56.78/web/#/core+/x-rule_",
+		" https://user:234@example.org/?k=9  ",
+		"http://10.21.32.43/web/#/core+/x-rule_",
 	}
 	for _, v := range valid {
 		assert.True(t, IsValidHttpURL(v, false))
@@ -35,15 +36,13 @@ func TestIsValidHttpURL(t *testing.T) {
 	}
 
 	inValid := []string{
-		"   ",
-		"\n",
-		"\r",
-		"=yy",
+		"  \n ",
+		"=yy\r",
 		"https://099idA",
 		"http$//_helloA97C0",
 		"ftp://#elloC0",
-		"http:@lloC0",
-		"https::--abc",
+		"http//:23@lloC0.com",
+		"https:/:--abc.net",
 	}
 	for _, v := range inValid {
 		assert.False(t, IsValidHttpURL(v, false))
