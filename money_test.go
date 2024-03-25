@@ -32,7 +32,7 @@ func TestIsValidMoney(t *testing.T) {
 	invalidMoney := []string{
 		"alpha",
 		"12a.34",
-		//"12a34",
+		"12a34",
 		"12,34a",
 		"123-2344.134E",
 		"123, 456",
