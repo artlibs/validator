@@ -1,5 +1,5 @@
 ## Validator for Go
-[![Run Tests](https://github.com/x-validator/validator/actions/workflows/test.yml/badge.svg)](https://github.com/x-validator/validator/actions/workflows/test.yml)  [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://opensource.org/licenses/MIT)
+[![Run Tests](https://github.com/x-validator/validator/actions/workflows/test.yml/badge.svg)](https://github.com/x-validator/validator/actions/workflows/test.yml)  [![Release](https://img.shields.io/github/release/x-validator/validator.svg?style=flat-square)](https://github.com/x-validator/validator/releases)  [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://opensource.org/licenses/MIT)
 
 一个适用于国内生态的go验证器代码库，支持如下一些验证场景：
 
