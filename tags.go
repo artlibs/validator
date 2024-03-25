@@ -1,5 +1,5 @@
 // @Since 2024-03-23.
-// @Author Fury, All rights Reserved.
+// @Author Leo, All rights Reserved.
 
 package validator
 
