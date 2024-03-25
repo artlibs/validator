@@ -6,11 +6,11 @@ package validator
 import "regexp"
 
 // https://github.com/VincentSit/ChinaMobilePhoneNumberRegex/blob/master/README-CN.md
-var basicRegexp = regexp.MustCompile("^(?:\\+?86)?1(?:3\\d{3}|5[^4\\D]\\d{2}|8\\d{3}|7(?:[235-8]\\d{2}|4(?:0\\d|1[0-2]|9\\d))|9[0-35-9]\\d{2}|66\\d{2})\\d{6}$")
-var virtualRegexp = regexp.MustCompile("^(?:\\+?86)?1(?:7[01]|6[257])\\d{8}$")
-var netOnlyRegexp = regexp.MustCompile("^(?:\\+?86)?14[579]\\d{8}$")
-var iotOnlyRegexp = regexp.MustCompile("^(?:\\+?86)?14(?:[14]0|41|[68]\\d)\\d{9}$")
-var allTypeRegexp = regexp.MustCompile("^(?:\\+?86)?1(?:3\\d{3}|5[^4\\D]\\d{2}|8\\d{3}|7(?:[0-35-9]\\d{2}|4(?:0\\d|1[0-2]|9\\d))|9[0-35-9]\\d{2}|6[2567]\\d{2}|4(?:(?:10|4[01])\\d{3}|[68]\\d{4}|[579]\\d{2}))\\d{6}$")
+var basicPhoneNumberRegexp = regexp.MustCompile("^(?:\\+?86)?1(?:3\\d{3}|5[^4\\D]\\d{2}|8\\d{3}|7(?:[235-8]\\d{2}|4(?:0\\d|1[0-2]|9\\d))|9[0-35-9]\\d{2}|66\\d{2})\\d{6}$")
+var virtualPhoneNumberRegexp = regexp.MustCompile("^(?:\\+?86)?1(?:7[01]|6[257])\\d{8}$")
+var netOnlyPhoneNumberRegexp = regexp.MustCompile("^(?:\\+?86)?14[579]\\d{8}$")
+var iotOnlyPhoneNumberRegexp = regexp.MustCompile("^(?:\\+?86)?14(?:[14]0|41|[68]\\d)\\d{9}$")
+var allTypePhoneNumberRegexp = regexp.MustCompile("^(?:\\+?86)?1(?:3\\d{3}|5[^4\\D]\\d{2}|8\\d{3}|7(?:[0-35-9]\\d{2}|4(?:0\\d|1[0-2]|9\\d))|9[0-35-9]\\d{2}|6[2567]\\d{2}|4(?:(?:10|4[01])\\d{3}|[68]\\d{4}|[579]\\d{2}))\\d{6}$")
 
 type PhoneNumberType int
 
@@ -27,18 +27,18 @@ const (
 	AllTypePhoneNumber
 )
 
-func getPhoneRegexp(phoneType PhoneNumberType) *regexp.Regexp {
+func getPhoneNumberRegexp(phoneType PhoneNumberType) *regexp.Regexp {
 	switch phoneType {
 	case BasicPhoneNumber:
-		return basicRegexp
+		return basicPhoneNumberRegexp
 	case VirtualPhoneNumber:
-		return virtualRegexp
+		return virtualPhoneNumberRegexp
 	case NetOnlyPhoneNumber:
-		return netOnlyRegexp
+		return netOnlyPhoneNumberRegexp
 	case IotOnlyPhoneNumber:
-		return iotOnlyRegexp
+		return iotOnlyPhoneNumberRegexp
 	default: // all type, 11或13位,支持所有号码
-		return allTypeRegexp
+		return allTypePhoneNumberRegexp
 	}
 }
 
@@ -52,7 +52,7 @@ func IsValidPhoneNumber(phone string, allowEmpty bool, types ...PhoneNumberType)
 		}
 
 		for _, phoneType := range types {
-			if getPhoneRegexp(phoneType).MatchString(value) {
+			if getPhoneNumberRegexp(phoneType).MatchString(value) {
 				return true
 			}
 			if phoneType == AllTypePhoneNumber {

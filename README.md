@@ -31,7 +31,13 @@ $ go get -u github.com/x-validator/validator
 ### API列表
 
 ```go
-bool valid = validator.IsValidPhone("11011001111", false, AllTypePhoneNumber)
+// 默认支持Basic、Virtual、NetOnly三种类型
+bool valid = validator.IsValidPhoneNumber("11011001111", false)
+
+// 指定支持类型
+bool valid = validator.IsValidPhoneNumber(
+    "11011001111", false, BasicPhoneNumber, VirtualPhoneNumber
+)
 
 bool valid = validator.IsValidMoney("23.54", false)
 
