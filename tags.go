@@ -1,8 +1,11 @@
+// @Since 2024-03-23.
+// @Author Fury, All rights Reserved.
+
 package validator
 
 type Fn func(value string, allowEmpty bool) bool
 
-// TagMap: tags map, when you want to add a new validation to the validator
+// TagMap tags map, when you want to add a new validation to the validator
 // you can range this map to get the tag and valid function
 var TagMap = map[string]Fn{
 	"email":      IsValidEmail,
