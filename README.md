@@ -1,4 +1,5 @@
 ## validator
+[![Run Tests](https://github.com/x-validator/validator/actions/workflows/test.yml/badge.svg)](https://github.com/x-validator/validator/actions/workflows/test.yml)
 
 A go library for validate phone, bank card, id card, email, money e.g.
 
