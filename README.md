@@ -1,5 +1,5 @@
 ## Validator for Go
-[![Run Tests](https://github.com/x-validator/validator/actions/workflows/test.yml/badge.svg)](https://github.com/x-validator/validator/actions/workflows/test.yml)[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://opensource.org/licenses/MIT)
+[![Run Tests](https://github.com/x-validator/validator/actions/workflows/test.yml/badge.svg)](https://github.com/x-validator/validator/actions/workflows/test.yml)  [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://opensource.org/licenses/MIT)
 
 一个适用于国内生态的go验证器代码库，支持如下一些验证场景：
 
@@ -12,7 +12,7 @@
 
 ### 前置条件
 
--   **[Go](https://go.dev/)**: `1.18`及以后版本，[ go releases](https://go.dev/doc/devel/release) 
+-   **[Go](https://go.dev/)**：`1.18`及以后版本，[ go releases](https://go.dev/doc/devel/release) 
 
 ### 获取Validator
 
