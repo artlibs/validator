@@ -36,6 +36,7 @@ func TestIsValidMoney(t *testing.T) {
 		"12,34a",
 		"123-2344.134E",
 		"123, 456",
+		"0,100.0",
 	}
 
 	for _, money := range invalidMoney {
