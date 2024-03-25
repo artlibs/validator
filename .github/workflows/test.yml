@@ -1,6 +1,5 @@
 # This workflow will build a golang project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
-
 name: Run Tests
 
 on:
@@ -8,18 +7,57 @@ on:
     branches: [ "develop" ]
   pull_request:
     branches: [ "main" ]
-
 jobs:
-
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.20'
-
-    - name: UnitTest
-      run: go test -v ./...
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: "go.mod"
+          check-latest: true
+      - name: Setup golangci-lint
+        uses: golangci/golangci-lint-action@v4
+        with:
+          version: v1.56.2
+          args: --verbose
+  test:
+    needs: lint
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        go: ["1.18", "1.19", "1.20", "1.21", "1.22"]
+        include:
+          - os: ubuntu-latest
+            go-build: ~/.cache/go-build
+          - os: macos-latest
+            go-build: ~/Library/Caches/go-build
+    name: ${{ matrix.os }} @ Go ${{ matrix.go }}
+    runs-on: ubuntu-latest
+    env:
+      GO111MODULE: on
+      GOPROXY: https://proxy.golang.org
+    steps:
+      - name: Set up Go ${{ matrix.go }}
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go }}
+          cache: false
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ${{ matrix.go-build }}
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+      - name: Run Tests
+        run: go test -v ./...
