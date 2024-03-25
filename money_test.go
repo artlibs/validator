@@ -4,7 +4,6 @@
 package validator
 
 import (
-	"fmt"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -24,7 +23,6 @@ func TestIsValidMoney(t *testing.T) {
 	}
 
 	for _, money := range validMoney {
-		fmt.Println(money)
 		assert.True(t, IsValidMoney(money, true))
 		assert.True(t, IsValidMoney(money, false))
 	}
@@ -40,7 +38,6 @@ func TestIsValidMoney(t *testing.T) {
 	}
 
 	for _, money := range invalidMoney {
-		fmt.Println(money)
 		assert.False(t, IsValidMoney(money, true))
 		assert.False(t, IsValidMoney(money, false))
 	}

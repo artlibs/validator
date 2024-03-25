@@ -12,8 +12,8 @@ func TestIsValidPhone(t *testing.T) {
 	// test empty
 	pts := []PhoneNumberType{BasicPhoneNumber, VirtualPhoneNumber, NetOnlyPhoneNumber, IotOnlyPhoneNumber, AllTypePhoneNumber}
 	for _, pt := range pts {
-		assert.True(t, IsValidPhoneNumber("", true, []PhoneNumberType{pt}))
-		assert.False(t, IsValidPhoneNumber("", false, []PhoneNumberType{pt}))
+		assert.True(t, IsValidPhoneNumber("", true, pt))
+		assert.False(t, IsValidPhoneNumber("", false, pt))
 	}
 
 	// test phones
@@ -77,8 +77,8 @@ func TestIsValidPhone(t *testing.T) {
 	}
 	for phone, kv := range caseMap {
 		for pt, expect := range kv {
-			assert.Equal(t, expect, IsValidPhoneNumber(phone, false, []PhoneNumberType{pt}))
-			assert.Equal(t, expect, IsValidPhoneNumber(phone, true, []PhoneNumberType{pt}))
+			assert.Equal(t, expect, IsValidPhoneNumber(phone, false, pt))
+			assert.Equal(t, expect, IsValidPhoneNumber(phone, true, pt))
 		}
 	}
 
