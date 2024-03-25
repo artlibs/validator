@@ -31,7 +31,7 @@ $ go get -u github.com/x-validator/validator
 ### API列表
 
 ```go
-bool valid = validator.IsValidPhone("11011001111", false, []PhoneType{ AllType })
+bool valid = validator.IsValidPhone("11011001111", false, AllTypePhoneNumber)
 
 bool valid = validator.IsValidMoney("23.54", false)
 
@@ -48,11 +48,11 @@ bool valid = validator.IsValidEmail("abcd@example.org", false)
 
 可以选择验证哪些手机号，或者全部手机号，参考了[ChinaMobilePhoneNumberRegex](https://github.com/VincentSit/ChinaMobilePhoneNumberRegex)项目：
 
--   **Basic**：仅基础运营商手机卡，11位手机卡-基础运营商,支持语音通话/短信/数据流量
--   **Virtual**：仅虚拟运营商号码，11位手机卡-虚拟运营商,支持语音通话/短信/数据流量
--   **NetOnly**：仅上网数据卡，11位上网卡,支持语音通话(部分)/短信/数据流量
--   **IotOnly**：仅物联网数据卡，13位物联网数据卡,支持数据流量
--   **AllType**：验证所有有效号码（手机卡 + 数据卡 + 上网卡）
+-   **BasicPhoneNumber**：仅基础运营商手机卡，11位手机卡-基础运营商,支持语音通话/短信/数据流量
+-   **VirtualPhoneNumber**：仅虚拟运营商号码，11位手机卡-虚拟运营商,支持语音通话/短信/数据流量
+-   **NetOnlyPhoneNumber**：仅上网数据卡，11位上网卡,支持语音通话(部分)/短信/数据流量
+-   **IotOnlyPhoneNumber**：仅物联网数据卡，13位物联网数据卡,支持数据流量
+-   **AllTypePhoneNumber**：验证所有有效号码（手机卡 + 数据卡 + 上网卡）
 
 ## 贡献
 
