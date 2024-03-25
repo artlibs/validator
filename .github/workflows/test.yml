@@ -13,7 +13,6 @@ jobs:
     env:
       GO111MODULE: on
       GOPROXY: https://proxy.golang.org
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Set up Go
