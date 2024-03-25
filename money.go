@@ -5,7 +5,7 @@ package validator
 
 import "regexp"
 
-var moneyRegexp = regexp.MustCompile("^([0-9]+|[0-9]{1,3}(,[0-9]{3})*)(.[0-9]{1,2})?$")
+var moneyRegexp = regexp.MustCompile("^-?([0-9]+|[0-9]{1,3}(,[0-9]{3})*)(.[0-9]{1,2})?$")
 
 // IsValidMoney 金钱
 // allowEmpty: return true if id is nil or ""
