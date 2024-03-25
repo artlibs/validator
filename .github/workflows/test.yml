@@ -15,12 +15,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.20'
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+        run: go mod tidy
 
-    - name: UnitTest
-      run: go test -v ./...
+      - name: UnitTest
+        run: go test -v ./...
