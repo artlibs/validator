@@ -1,5 +1,5 @@
 ## Validator for Go
-[![Run Tests](https://github.com/x-validator/validator/actions/workflows/test.yml/badge.svg)](https://github.com/x-validator/validator/actions/workflows/test.yml)  [![Release](https://img.shields.io/github/release/x-validator/validator.svg?style=flat-square)](https://github.com/x-validator/validator/releases)  [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://opensource.org/licenses/MIT)
+[![Run Tests](https://github.com/x-validator/validator/actions/workflows/test.yml/badge.svg)](https://github.com/x-validator/validator/actions/workflows/test.yml)  [![Release](https://img.shields.io/github/release/x-validator/validator.svg?style=flat-square)](https://github.com/x-validator/validator/releases)  ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/x-validator/validator/total)  ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/x-validator/validator)  [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://opensource.org/licenses/MIT)
 
 一个适用于国内生态的go验证器代码库，支持如下一些验证场景：
 
@@ -25,7 +25,9 @@ import "github.com/x-validator/validator"
 然后执行 `go [build|run|test]` 就会自动下载该依赖；或者手动下载依赖：
 
 ```shell
-$ go get -u github.com/x-validator/validator
+$ export GOPROXY=https://goproxy.cn,direct   # 设置代理
+$ go mod init yourmod  # 初始化模块
+$ go mod tidy          # 下载依赖
 ```
 
 ### API列表
